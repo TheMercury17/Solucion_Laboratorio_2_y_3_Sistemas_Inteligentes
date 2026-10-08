@@ -69,18 +69,19 @@
 
 % =========================================================================
 % PALETA DE COLORIMETRÍA VISUAL (ESTÉTICA DE INTERFAZ MODERNA - P3R UI)
+% Diseñada con alto contraste garantizado (AAA) para máxima legibilidad.
 % =========================================================================
 \definecolor{p3dark}{RGB}{11, 27, 61}        % Azul noche profundo (#0B1B3D)
 \definecolor{p3navy}{RGB}{5, 14, 34}         % Sombra profunda (#050E22)
 \definecolor{p3blue}{RGB}{0, 85, 185}        % Azul cobalto UI (#0055B9)
-\definecolor{p3cyan}{RGB}{0, 210, 255}       % Azul cian neón (#00D2FF)
+\definecolor{p3cyan}{RGB}{0, 180, 230}       % Cian UI contrastado (#00B4E6)
 \definecolor{p3lightcyan}{RGB}{236, 248, 255}% Fondo hielo muy claro (#ECF8FF)
-\definecolor{p3gold}{RGB}{255, 200, 0}       % Amarillo luna (#FFC800)
-\definecolor{p3darkgray}{RGB}{40, 44, 52}    % Texto carbón (#282C34)
-\definecolor{p3border}{RGB}{180, 215, 240}   % Borde sutil (#B4D7F0)
-\definecolor{p3codebg}{RGB}{245, 249, 254}   % Fondo de código
+\definecolor{p3gold}{RGB}{230, 165, 0}       % Ámbar / Dorado (#E6A500)
+\definecolor{p3darkgray}{RGB}{35, 40, 48}    % Texto carbón oscuro (#232830)
+\definecolor{p3border}{RGB}{170, 205, 235}   % Borde sutil (#AACDEB)
+\definecolor{p3codebg}{RGB}{246, 250, 255}   % Fondo de código (#F6FAFF)
 
-% Alias para retrocompatibilidad interna
+% Alias para compatibilidad interna
 \colorlet{p3darkblue}{p3dark}
 \colorlet{p3lightblue}{p3blue}
 \colorlet{p3lightbg}{p3lightcyan}
@@ -130,18 +131,18 @@
 \fancyhead[L]{%
   \begin{tikzpicture}[remember picture, overlay]
     \node[anchor=south west, inner sep=0pt] at (0, 0.08) {%
-      {\titlefont\fontsize{9.5}{11}\selectfont\color{p3blue}GUÍA DE LABORATORIO 2 Y 3: SISTEMAS INTELIGENTES}%
+      {\titlefont\fontsize{9}{10.5}\selectfont\color{p3blue}GUÍA DE LABORATORIO 2 Y 3: SISTEMAS INTELIGENTES}%
       \hspace{6pt}{\color{p3cyan}\textbf{|}}\hspace{6pt}%
-      {\titlefont\fontsize{8.5}{10}\selectfont\color{p3dark}CASO AGROSWARM S.A.S.}%
+      {\titlefont\fontsize{8}{9.5}\selectfont\color{p3dark}CASO AGROSWARM S.A.S.}%
     };
     \draw[p3cyan, line width=1.2pt] (0,-0.05) -- (\textwidth,-0.05);
     \draw[p3blue, line width=0.5pt] (0,-0.12) -- (\textwidth,-0.12);
   \end{tikzpicture}%
 }
 \fancyfoot[L]{%
-  {\titlefont\fontsize{8.5}{10}\selectfont\color{p3blue}EDEMÉRIDOS}%
+  {\titlefont\fontsize{8.5}{10}\selectfont\color{p3blue}EDEMÉRIDOS (GRUPO 5)}%
   \hspace{6pt}{\color{p3cyan}\textbf{|}}\hspace{6pt}%
-  {\sffamily\fontsize{8.5}{10}\selectfont\color{gray}Andrés Sebastián Coral Vallejo \& Paula Alejandra Ortiz}%
+  {\sffamily\fontsize{8.5}{10}\selectfont\color{p3darkgray}Andrés Sebastián Coral Vallejo \& Paula Alejandra Ortiz}%
 }
 \fancyfoot[R]{%
   {\titlefont\fontsize{10}{12}\selectfont\color{p3dark}\thepage}%
@@ -170,29 +171,38 @@
 % COMPONENTES VISUALES UI DE INSPIRACIÓN GEOMÉTRICA MODERNA
 % =========================================================================
 
-% 1. Banner dinámico de Ejercicio / Tarea
+% 1. Banner de Ejercicio / Tarea (Diseño dinámico de alto contraste anti-desborde)
 \newcommand{\pthreeExercise}[2]{%
   \refstepcounter{subsection}%
   \addcontentsline{toc}{subsection}{\protect\numberline{\thesubsection}\MakeUppercase{#1: #2}}%
-  \vspace{14pt}%
+  \vspace{12pt}%
   \noindent
-  \begin{tikzpicture}
-    % Badge angular en cian para el número de ejercicio
-    \fill[p3cyan] (0,0) -- (3.2cm, 0) -- (3.6cm, 0.74cm) -- (0, 0.74cm) -- cycle;
-    \node[anchor=center, text=p3dark] at (1.6cm, 0.37cm) {%
-      {\titlefont\fontsize{10.5}{12.5}\selectfont\bfseries\MakeUppercase{#1}}%
-    };
-    % Barra angular en azul noche para el título del ejercicio
-    \fill[p3dark] (3.45cm, 0) -- (\linewidth, 0) -- (\linewidth, 0.74cm) -- (3.85cm, 0.74cm) -- cycle;
-    \fill[p3gold] (\linewidth-0.6cm, 0) -- (\linewidth, 0) -- (\linewidth, 0.74cm) -- (\linewidth-0.3cm, 0.74cm) -- cycle;
-    \node[anchor=west, text=white] at (4.0cm, 0.37cm) {%
-      {\titlefont\fontsize{10.5}{12.5}\selectfont\bfseries\MakeUppercase{#2}}%
-    };
-  \end{tikzpicture}%
-  \par\vspace{6pt}%
+  \begin{tcolorbox}[
+    enhanced,
+    colback=p3dark,
+    colframe=p3blue,
+    boxrule=1.2pt,
+    leftrule=5pt,
+    sharp corners,
+    top=3.5mm,
+    bottom=3.5mm,
+    left=4mm,
+    right=4mm,
+    before skip=8pt,
+    after skip=10pt
+  ]
+    \begin{minipage}{0.30\textwidth}
+      {\titlefont\fontsize{10.5}{12.5}\selectfont\bfseries\color{p3cyan}\MakeUppercase{#1}}
+    \end{minipage}%
+    \hfill{\color{p3gold}\rule[-2pt]{1.5pt}{14pt}}\hfill%
+    \begin{minipage}{0.66\textwidth}
+      {\titlefont\fontsize{10.5}{12.5}\selectfont\bfseries\color{white}\MakeUppercase{#2}}
+    \end{minipage}
+  \end{tcolorbox}%
+  \par\vspace{4pt}%
 }
 
-% 2. Tarjeta ligera de Enunciado del Problema
+% 2. Tarjeta de Enunciado del Problema
 \newtcolorbox{pthreeProblem}{
   enhanced,
   breakable,
@@ -207,7 +217,7 @@
   right=4mm,
   before skip=8pt,
   after skip=10pt,
-  fontupper=\normalfont,
+  fontupper=\normalfont\color{p3darkgray},
   title={\titlefont\fontsize{9}{11}\selectfont\bfseries\color{white}\MakeUppercase{CONDICIONES Y ENUNCIADO OFICIAL}},
   colbacktitle=p3blue,
   attach boxed title to top left={yshift=-2mm, xshift=2mm},
@@ -235,14 +245,15 @@
   left=4.5mm,
   right=4.5mm,
   before skip=10pt,
-  after skip=16pt,
+  after skip=14pt,
+  fontupper=\normalfont\color{p3darkgray},
   title={\titlefont\fontsize{9.5}{11.5}\selectfont\bfseries\color{white}\MakeUppercase{RESUMEN DE RESULTADOS Y RESPUESTA FINAL}},
   colbacktitle=p3dark,
   attach boxed title to top left={yshift=-2mm, xshift=2mm},
   boxed title style={sharp corners, boxrule=0.8pt, colframe=p3cyan, colback=p3dark}
 }
 
-% 5. Tarjeta de Dictamen y Recomendación Ejecutiva
+% 5. Tarjeta de Dictamen y Recomendación de Ingeniería
 \newtcolorbox{p3highlight}[1][]{
   enhanced,
   breakable,
@@ -254,6 +265,7 @@
   arc=0mm,
   before skip=8pt,
   after skip=10pt,
+  fontupper=\normalfont\color{p3darkgray},
   title={\titlefont\fontsize{9}{11}\selectfont\bfseries\color{white}\MakeUppercase{DICTAMEN Y RECOMENDACIÓN DE INGENIERÍA}},
   colbacktitle=p3blue,
   attach boxed title to top left={yshift=-2mm, xshift=2mm},
@@ -276,54 +288,68 @@
 \begin{document}
 
 % -------------------------------------------------------------------------
-% PORTADA DINÁMICA DE ESTÉTICA GEOMÉTRICA MODERNA
+% PORTADA DE ALTO CONTRASTE (ESTÉTICA DE INTERFAZ GEOMÉTRICA MODERNA)
 % -------------------------------------------------------------------------
 \begin{titlepage}
   \pagecolor{white}
   \begin{tikzpicture}[remember picture, overlay]
-    % Franja diagonal de fondo (hielo muy suave)
-    \fill[p3lightblue!8] (current page.north west) -- (current page.south west) -- ++(8.5,0) -- ([xshift=13.5cm]current page.north west) -- cycle;
+    % Fondo geométrico superior
+    \fill[p3dark] (current page.north west) rectangle ([yshift=-4.2cm]current page.north east);
+    \fill[p3cyan] ([yshift=-4.2cm]current page.north west) rectangle ([yshift=-4.38cm]current page.north east);
+    \fill[p3gold] ([yshift=-4.38cm]current page.north west) rectangle ([yshift=-4.50cm]current page.north east);
     
-    % Barra superior inclinada en azul noche
-    \fill[p3darkblue] ([yshift=-3.5cm]current page.north west) -- ([yshift=-1.8cm]current page.north east) -- ([yshift=-4.3cm]current page.north east) -- ([yshift=-6.0cm]current page.north west) -- cycle;
-    \fill[p3cyan] ([yshift=-6.0cm]current page.north west) -- ([yshift=-4.3cm]current page.north east) -- ([yshift=-4.55cm]current page.north east) -- ([yshift=-6.25cm]current page.north west) -- cycle;
-    \fill[p3gold] ([yshift=-6.25cm]current page.north west) -- ([yshift=-4.55cm]current page.north east) -- ([yshift=-4.70cm]current page.north east) -- ([yshift=-6.40cm]current page.north west) -- cycle;
+    % Franja sutil decorativa de fondo
+    \fill[p3lightcyan!50] ([yshift=-4.50cm]current page.north west) -- ([yshift=-12cm]current page.north west) -- ([yshift=-4.50cm, xshift=14cm]current page.north west) -- cycle;
     
-    % Texto del encabezado en la barra superior
-    \node[anchor=west, text=white] at ([xshift=2.0cm, yshift=-3.9cm]current page.north west) {%
-      {\titlefont\fontsize{13}{15}\selectfont\bfseries UNIVERSIDAD SERGIO ARBOLEDA \quad$|$\quad ESCUELA DE INGENIERÍA}%
+    % Encabezado institucional en el bloque superior
+    \node[anchor=west, text=white] at ([xshift=2.0cm, yshift=-2.2cm]current page.north west) {%
+      \begin{minipage}{0.85\textwidth}
+        {\titlefont\fontsize{13}{15}\selectfont\bfseries UNIVERSIDAD SERGIO ARBOLEDA \quad$|$\quad ESCUELA DE INGENIERÍA}\\[4pt]
+        {\sffamily\fontsize{10.5}{12.5}\selectfont\color{p3cyan}\textbf{PROGRAMA DE CIENCIAS DE LA COMPUTACIÓN E INTELIGENCIA ARTIFICIAL}}
+      \end{minipage}
     };
     
-    % Bloque central de Título
-    \node[anchor=west] at ([xshift=2.0cm, yshift=-8.5cm]current page.north west) {%
+    % Bloque central de Título del Documento
+    \node[anchor=west] at ([xshift=2.0cm, yshift=-8.2cm]current page.north west) {%
       \begin{minipage}{0.85\textwidth}
-        {\titlefont\fontsize{14}{16}\selectfont\color{p3blue}\textbf{SISTEMAS INTELIGENTES --- 2026-II}}\\[8pt]
-        {\titlefont\fontsize{24}{28}\selectfont\bfseries\color{p3dark}GUÍA DE LABORATORIO 2 Y 3}\\[10pt]
-        {\titlefont\fontsize{16}{20}\selectfont\bfseries\color{p3blue}REGRESIÓN MULTIVARIADA, ÁLGEBRA LINEAL Y REGRESIÓN COMO PROYECCIÓN}\\[14pt]
+        {\titlefont\fontsize{13}{15}\selectfont\color{p3blue}\textbf{SISTEMAS INTELIGENTES \quad$|$\quad SEGUNDO SEMESTRE 2026}}\\[6pt]
+        {\titlefont\fontsize{24}{28}\selectfont\bfseries\color{p3dark}GUÍA DE LABORATORIO 2 Y 3}\\[8pt]
+        {\titlefont\fontsize{15}{18}\selectfont\bfseries\color{p3blue}REGRESIÓN MULTIVARIADA, ÁLGEBRA LINEAL Y REGRESIÓN COMO PROYECCIÓN}\\[12pt]
         {\color{p3cyan}\rule{0.95\textwidth}{2.5pt}}\\[8pt]
         {\sffamily\fontsize{11.5}{14}\selectfont\color{p3darkgray}\textbf{Caso de Estudio Agroindustrial Transversal: AgroSwarm S.A.S.}}\\[4pt]
-        {\sffamily\fontsize{10.5}{13}\selectfont\color{gray}Calibración Bivariada, Optimización con Enjambre de Partículas (PSO), Redundancia Matricial y Control Automático de Calidad por Ortogonalidad}
+        {\sffamily\fontsize{10}{12.5}\selectfont\color{gray}Calibración Bivariada, Optimización con Enjambre de Partículas (PSO), Redundancia Matricial y Control Automático de Calidad por Ortogonalidad}
       \end{minipage}
     };
     
-    % Franja angular inferior decorativa
-    \fill[p3dark] ([yshift=3.5cm]current page.south west) -- ([yshift=4.8cm]current page.south east) -- (current page.south east) -- (current page.south west) -- cycle;
-    \fill[p3blue] ([yshift=4.8cm]current page.south east) -- ([yshift=5.1cm]current page.south east) -- ([yshift=3.8cm]current page.south west) -- ([yshift=3.5cm]current page.south west) -- cycle;
-    \fill[p3gold] ([yshift=5.1cm]current page.south east) -- ([yshift=5.25cm]current page.south east) -- ([yshift=3.95cm]current page.south west) -- ([yshift=3.8cm]current page.south west) -- cycle;
-    
-    % Panel de autores y metadatos
-    \node[anchor=south west] at ([xshift=2.0cm, yshift=0.8cm]current page.south west) {%
-      \begin{minipage}{0.85\textwidth}
-        \color{white}
-        {\titlefont\fontsize{12}{14}\selectfont\bfseries\color{p3cyan}GRUPO DE TRABAJO: EDEMÉRIDOS (GRUPO 5)}\\[6pt]
-        {\titlefont\fontsize{10.5}{12.5}\selectfont\textbf{ESTUDIANTES Y AUTORES:}}\\[3pt]
-        {\sffamily\fontsize{10.5}{12.5}\selectfont $\blacktriangleright$ \textbf{Andrés Sebastián Coral Vallejo} \quad$|$\quad Ingeniería de Sistemas y Computación}\\[2pt]
-        {\sffamily\fontsize{10.5}{12.5}\selectfont $\blacktriangleright$ \textbf{Paula Alejandra Ortiz} \quad$|$\quad Ciencia de Datos e Inteligencia Artificial}\\[8pt]
-        {\titlefont\fontsize{10.5}{12.5}\selectfont\textbf{DOCENTE TITULAR:}}\\[2pt]
-        {\sffamily\fontsize{10.5}{12.5}\selectfont Ph.D. Ricardo Andrés Fonseca Perdomo \quad$|$\quad \texttt{ricardo.fonseca@usa.edu.co}}\\[6pt]
-        {\sffamily\fontsize{9.5}{11.5}\selectfont\color{p3border}Bogotá D.C., Colombia --- Octubre de 2026}
-      \end{minipage}
+    % Panel inferior de datos del grupo (Diseño de tarjeta con 100% legibilidad)
+    \node[anchor=south west] at ([xshift=2.0cm, yshift=2.2cm]current page.south west) {%
+      \begin{tcolorbox}[
+        enhanced,
+        width=0.85\textwidth,
+        colback=p3lightcyan!70!white,
+        colframe=p3dark,
+        boxrule=1.2pt,
+        leftrule=5pt,
+        sharp corners,
+        top=4mm,
+        bottom=4mm,
+        left=5mm,
+        right=5mm
+      ]
+        {\titlefont\fontsize{11.5}{13.5}\selectfont\bfseries\color{p3dark}GRUPO DE TRABAJO: EDEMÉRIDOS (GRUPO 5)}\\[8pt]
+        {\titlefont\fontsize{10}{12}\selectfont\color{p3blue}\textbf{INTEGRANTES:}}\\[3pt]
+        {\sffamily\fontsize{10.5}{12.5}\selectfont\color{p3darkgray} $\blacktriangleright$ \textbf{Andrés Sebastián Coral Vallejo} \quad$|$\quad Ciencias de la Computación e Inteligencia Artificial}\\[2pt]
+        {\sffamily\fontsize{10.5}{12.5}\selectfont\color{p3darkgray} $\blacktriangleright$ \textbf{Paula Alejandra Ortiz} \quad$|$\quad Ciencias de la Computación e Inteligencia Artificial}\\[8pt]
+        {\titlefont\fontsize{10}{12}\selectfont\color{p3blue}\textbf{DOCENTE TITULAR:}}\\[2pt]
+        {\sffamily\fontsize{10.5}{12.5}\selectfont\color{p3darkgray} Ph.D. Ricardo Andrés Fonseca Perdomo \quad$|$\quad \texttt{ricardo.fonseca@usa.edu.co}}\\[6pt]
+        {\sffamily\fontsize{9}{11}\selectfont\color{gray}Bogotá D.C., Colombia \quad$|$\quad Octubre de 2026}
+      \end{tcolorbox}
     };
+    
+    % Franja decorativa inferior
+    \fill[p3dark] (current page.south west) rectangle ([yshift=0.8cm]current page.south east);
+    \fill[p3cyan] ([yshift=0.8cm]current page.south west) rectangle ([yshift=0.92cm]current page.south east);
+    \fill[p3gold] ([yshift=0.92cm]current page.south west) rectangle ([yshift=1.00cm]current page.south east);
   \end{tikzpicture}
 \end{titlepage}
 
@@ -343,13 +369,13 @@ En el desarrollo de plataformas robóticas para la agricultura de precisión, la
 \begin{figure}[htbp]
   \centering
   \begin{tikzpicture}
-    \node[draw=p3blue, line width=1.2pt, fill=p3lightcyan!40, inner sep=10pt, rounded corners=2pt] {
+    \node[draw=p3blue, line width=1.2pt, fill=p3lightcyan!50, inner sep=10pt, rounded corners=2pt] {
       \begin{minipage}{0.92\textwidth}
         {\titlefont\fontsize{10.5}{12.5}\selectfont\bfseries\color{p3dark}LÍNEA DE TIEMPO Y CONEXIÓN CONCEPTUAL ENTRE PRÁCTICAS}\\[6pt]
         \begin{itemize}[leftmargin=18pt, label={\color{p3blue}$\blacktriangleright$}]
           \item \textbf{Semana 3 (Laboratorio 1):} Se formuló la calibración univariada entre el voltaje del sensor capacitivo ($x_1$) y la humedad de referencia certificada ($y$). El modelo obtenido fue $\hat{y} = 13.8605 \cdot x_1 + 22.2019$, logrando un $\text{RMSE} = 2.1535\% < 3.0\%$ sobre el 12\% de datos de prueba reservados.
-          \item \textbf{Semana 4 (Tema 4 --- Laboratorio 2):} El equipo de campo reportó que en días de alta radiación y calor, el sensor calibrado presenta desvíos inadmisibles. Se amplía el dataset con la temperatura del suelo ($x_2$), transitando hacia la \textbf{regresión multivariada matricial}, el análisis de \textbf{sesgo y varianza}, y la optimización alternativa mediante \textbf{Enjambre de Partículas (PSO)}.
-          \item \textbf{Semana 5 (Tema 5 --- Laboratorio 3):} Ante la propuesta de compras de incorporar un sensor de conductividad eléctrica aparente ($x_3$), se diagnostica la presencia de \textbf{redundancia y colinealidad} mediante el rango de matrices y la descomposición en valores/vectores propios, concluyendo con el diseño de una prueba automática de \textbf{Control de Calidad (QA) por proyección ortogonal}.
+          \item \textbf{Semana 4 (Tema 4 $|$ Laboratorio 2):} El equipo de campo reportó que en días de alta radiación y calor, el sensor calibrado presenta desvíos inadmisibles. Se amplía el dataset con la temperatura del suelo ($x_2$), transitando hacia la \textbf{regresión multivariada matricial}, el análisis de \textbf{sesgo y varianza}, y la optimización alternativa mediante \textbf{Enjambre de Partículas (PSO)}.
+          \item \textbf{Semana 5 (Tema 5 $|$ Laboratorio 3):} Ante la propuesta de compras de incorporar un sensor de conductividad eléctrica aparente ($x_3$), se diagnostica la presencia de \textbf{redundancia y colinealidad} mediante el rango de matrices y la descomposición en valores/vectores propios, concluyendo con el diseño de una prueba automática de \textbf{Control de Calidad (QA) por proyección ortogonal}.
         \end{itemize}
       \end{minipage}
     };
@@ -388,13 +414,13 @@ Agrupando algebraicamente las observaciones en vectores y matrices:
   \begin{bmatrix}
     w_0 \\ w_1 \\ w_2
   \end{bmatrix} \in \R^{3}, \quad
-  \epsilon = 
+  \boldsymbol{\epsilon} = 
   \begin{bmatrix}
     \epsilon_1 \\ \epsilon_2 \\ \vdots \\ \epsilon_m
   \end{bmatrix} \in \R^{m}
 \end{equation}
 
-El modelo en notación compacta es $\mathbf{y} = \mathbf{X}\mathbf{w} + \epsilon$. El método de Mínimos Cuadrados Ordinarios (MCO) busca el vector óptimo $\mathbf{w}$ que minimiza la suma de los residuos al cuadrado (equivalente al Error Cuadrático Medio):
+El modelo en notación compacta es $\mathbf{y} = \mathbf{X}\mathbf{w} + \boldsymbol{\epsilon}$. El método de Mínimos Cuadrados Ordinarios (MCO) busca el vector óptimo $\mathbf{w}$ que minimiza la suma de los residuos al cuadrado (equivalente al Error Cuadrático Medio):
 \begin{equation}
   J(\mathbf{w}) = \frac{1}{m} \norm{\mathbf{y} - \mathbf{X}\mathbf{w}}_2^2 = \frac{1}{m} (\mathbf{y} - \mathbf{X}\mathbf{w})^\top (\mathbf{y} - \mathbf{X}\mathbf{w})
 \end{equation}
@@ -409,7 +435,7 @@ Este sistema se conoce como las \textbf{Ecuaciones Normales}. Si las columnas de
   \mathbf{w}^* = (\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{X}^\top \mathbf{y}
 \end{equation}
 
-En la práctica computacional, para evitar la amplificación de errores numéricos asociada a la inversión explícita de matrices mal condicionadas, la librería NumPy emplea \texttt{numpy.linalg.lstsq}, la cual resuelve el problema mediante la Descomposición en Valores Singulares (SVD: $\mathbf{X} = \mathbf{U}\Sigma\mathbf{V}^\top$), calculando $\mathbf{w}^* = \mathbf{V}\Sigma^+ \mathbf{U}^\top \mathbf{y}$.
+En la práctica computacional, para evitar la amplificación de errores numéricos asociada a la inversión explícita de matrices mal condicionadas, la librería NumPy emplea \texttt{numpy.linalg.lstsq}, la cual resuelve el problema mediante la Descomposición en Valores Singulares (SVD: $\mathbf{X} = \mathbf{U}\mathbf{\Sigma}\mathbf{V}^\top$), calculando $\mathbf{w}^* = \mathbf{V}\mathbf{\Sigma}^+ \mathbf{U}^\top \mathbf{y}$.
 
 % -------------------------------------------------------------------------
 % TAREA 1 (TEMA 4)
@@ -455,17 +481,19 @@ Se evalúan las predicciones sobre los 120 registros de prueba $\mathbf{X}_{\tex
   \centering
   \caption{Comparativa de Rendimiento en Calibración: Modelo Univariado vs. Bivariado (Conjunto de Prueba)}
   \vspace{4pt}
-  \small\begin{tabular}{lcccc}
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{lcccc}
     \toprule
-    \rowcolor{p3dark}\color{white}\textbf{Modelo de Calibración} & \color{white}\textbf{Intercepto ($b$)} & \color{white}\textbf{Voltaje ($w_1$)} & \color{white}\textbf{Temperatura ($w_2$)} & \color{white}\textbf{RMSE Prueba (\%)} \\
+    \rowcolor{p3dark} \color{white}\textbf{Modelo de Calibración} & \color{white}\textbf{Intercepto ($b$)} & \color{white}\textbf{Voltaje ($w_1$)} & \color{white}\textbf{Temperatura ($w_2$)} & \color{white}\textbf{RMSE Prueba (\%)} \\
     \midrule
-    \textbf{Univariado (Semana 3)} & $22.2019\%$ & $13.8605$ \%/V & --- & $\mathbf{2.1535\%}$ \\
+    \textbf{Univariado (Semana 3)} & $22.2019\%$ & $13.8605$ \%/V & N/A & $\mathbf{2.1535\%}$ \\
     \textbf{Bivariado (Semana 4)} & $5.7146\%$ & $13.8355$ \%/V & $0.6610$ \%/$^\circ\text{C}$ & $\mathbf{1.0230\%}$ \\
     \midrule
-    \rowcolor{p3lightcyan!50}\textbf{Diferencia Absoluta} & $-16.4873\%$ & $-0.0250$ \%/V & $+0.6610$ \%/$^\circ\text{C}$ & $\mathbf{-1.1305\%}$ \\
-    \rowcolor{p3lightcyan!50}\textbf{Reducción Porcentual del Error} & --- & --- & --- & $\mathbf{52.50\%}$ \\
+    \rowcolor{p3lightcyan!60} \textbf{Diferencia Absoluta} & $-16.4873\%$ & $-0.0250$ \%/V & $+0.6610$ \%/$^\circ\text{C}$ & $\mathbf{-1.1305\%}$ \\
+    \rowcolor{p3lightcyan!60} \textbf{Reducción Porcentual del Error} & N/A & --- & N/A & $\mathbf{52.50\%}$ \\
     \bottomrule
-  \end{tabular}
+  \end{tabular}%
+  }
 \end{table}
 
 \begin{pthreeSummary}
@@ -503,15 +531,17 @@ Se evalúa el RMSE tanto en el conjunto de entrenamiento ($m=880$) como en el de
   \centering
   \caption{Comportamiento de Sesgo y Varianza según el Grado de Complejidad Polinómica}
   \vspace{4pt}
-  \small\begin{tabular}{ccccc}
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{ccccc}
     \toprule
-    \rowcolor{p3dark}\color{white}\textbf{Grado ($d$)} & \color{white}\textbf{RMSE Entrenamiento} & \color{white}\textbf{RMSE Prueba} & \color{white}\textbf{Brecha ($\text{Prueba} - \text{Entrenamiento}$)} & \color{white}\textbf{Diagnóstico Teórico} \\
+    \rowcolor{p3dark} \color{white}\textbf{Grado ($d$)} & \color{white}\textbf{RMSE Entrenamiento} & \color{white}\textbf{RMSE Prueba} & \color{white}\textbf{Brecha ($\text{Prueba} - \text{Entrenamiento}$)} & \color{white}\textbf{Diagnóstico Teórico} \\
     \midrule
     \textbf{Grado 1} & $2.2490\%$ & $2.1535\%$ & $-0.0954\%$ & \textbf{Subajuste (Alto Sesgo)} \\
     \textbf{Grado 3} & $2.2490\%$ & $2.1529\%$ & $-0.0961\%$ & \textbf{Generalización Equilibrada} \\
     \textbf{Grado 10} & $2.2419\%$ & $2.1576\%$ & $-0.0843\%$ & \textbf{Inicio de Sobreajuste (Alta Varianza)} \\
     \bottomrule
-  \end{tabular}
+  \end{tabular}%
+  }
 \end{table}
 
 \begin{figure}[htbp]
@@ -678,9 +708,10 @@ Se ejecutó el algoritmo sobre los datos de entrenamiento ($m=880$) con $N_p = 6
   \centering
   \caption{Comparación de Coeficientes y Error de Prueba: Método Matricial (MCO) vs. Metaheurística (PSO)}
   \vspace{4pt}
-  \small\begin{tabular}{lcccc}
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{lcccc}
     \toprule
-    \rowcolor{p3dark}\color{white}\textbf{Parámetro / Métrica} & \color{white}\textbf{Solución Matricial (MCO)} & \color{white}\textbf{Solución PSO} & \color{white}\textbf{Diferencia Absoluta ($|\Delta|$)} & \color{white}\textbf{Coincidencia} \\
+    \rowcolor{p3dark} \color{white}\textbf{Parámetro / Métrica} & \color{white}\textbf{Solución Matricial (MCO)} & \color{white}\textbf{Solución PSO} & \color{white}\textbf{Diferencia Absoluta ($|\Delta|$)} & \color{white}\textbf{Coincidencia} \\
     \midrule
     \textbf{Peso Voltaje ($w_1$)} & $13.83546007$ & $13.83546005$ & $1.23 \times 10^{-8}$ & $> 99.999999\%$ \\
     \textbf{Peso Temp. ($w_2$)} & $0.66104393$ & $0.66104393$ & $4.81 \times 10^{-9}$ & $> 99.999999\%$ \\
@@ -689,7 +720,8 @@ Se ejecutó el algoritmo sobre los datos de entrenamiento ($m=880$) con $N_p = 6
     \textbf{RMSE Entrenamiento} & $1.133983\%$ & $1.133983\%$ & $< 10^{-9}$ & Idéntico \\
     \textbf{RMSE Prueba (12\%)} & $\mathbf{1.02304931\%}$ & $\mathbf{1.02304931\%}$ & $\mathbf{1.63 \times 10^{-9}\%}$ & \textbf{Idéntico} \\
     \bottomrule
-  \end{tabular}
+  \end{tabular}%
+  }
 \end{table}
 
 \begin{pthreeSummary}
@@ -712,7 +744,7 @@ Con base en tus resultados de la Tarea 3, redacta una recomendación (máx. medi
 
 \begin{p3highlight}
 \textbf{MEMORANDO TÉCNICO INTERNO} \\
-\textbf{Para:} Equipo de Firmware y Arquitectura Embebida --- AgroSwarm S.A.S. \\
+\textbf{Para:} Equipo de Firmware y Arquitectura Embebida $|$ AgroSwarm S.A.S. \\
 \textbf{De:} Andrés Sebastián Coral Vallejo \& Paula Alejandra Ortiz (Grupo Edeméridos) \\
 \textbf{Asunto:} Evaluación de Viabilidad de PSO en Microcontroladores de 8 Bits vs. Cálculo Matricial \\
 \textbf{Fecha:} Octubre de 2026
@@ -765,16 +797,18 @@ Se optimizaron los pesos mediante PSO para cada valor del hiperparámetro $\lamb
   \centering
   \caption{Comportamiento de Coeficientes y Error de Prueba en Regresión Ridge con PSO}
   \vspace{4pt}
-  \small\begin{tabular}{ccccccc}
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{ccccccc}
     \toprule
-    \rowcolor{p3dark}\color{white}\textbf{Hiperparámetro $\lambda$} & \color{white}\textbf{$w_1$ (Voltaje)} & \color{white}\textbf{$w_2$ (Temp.)} & \color{white}\textbf{Intercepto ($b$)} & \color{white}\textbf{Norma $\norm{\mathbf{w}}_2$} & \color{white}\textbf{RMSE Prueba} & \color{white}\textbf{Efecto Observado} \\
+    \rowcolor{p3dark} \color{white}\textbf{Hiperparámetro} $\lambda$ & \color{white}\textbf{$w_1$ (Voltaje)} & \color{white}\textbf{$w_2$ (Temp.)} & \color{white}\textbf{Intercepto ($b$)} & \color{white}\textbf{Norma} $\norm{\mathbf{w}}_2$ & \color{white}\textbf{RMSE Prueba} & \color{white}\textbf{Efecto Observado} \\
     \midrule
     $\lambda = 0.0$ & $13.8355$ & $0.6610$ & $5.7146$ & $13.8512$ & $\mathbf{1.0230\%}$ & \textbf{MCO Óptimo} \\
     $\lambda = 0.1$ & $11.5913$ & $0.6585$ & $9.6818$ & $11.6100$ & $2.1399\%$ & Encogimiento Leve \\
     $\lambda = 1.0$ & $4.7127$ & $0.6110$ & $22.8362$ & $4.7522$ & $7.0999\%$ & Encogimiento Fuerte \\
     $\lambda = 10.0$ & $0.6801$ & $0.3201$ & $37.1248$ & $0.7517$ & $10.0861\%$ & \textbf{Colapso a la Media} \\
     \bottomrule
-  \end{tabular}
+  \end{tabular}%
+  }
 \end{table}
 
 \begin{figure}[htbp]
@@ -816,7 +850,7 @@ El problema de optimización para $\mathbf{X}_B$ cuenta con un espacio de búsqu
 \end{equation}
 El error de entrenamiento \textbf{nunca puede aumentar}. 
 
-Sin embargo, en el conjunto de prueba independiente ($\mathbf{y}_{\text{test}} = \mathbf{X}_{\text{test}}\mathbf{w} + \epsilon_{\text{test}}$), la inclusión de variables irrelevantes o redundantes incrementa la varianza del estimador ($\text{Var}(\hat{\mathbf{w}}) = \sigma^2 (\mathbf{X}^\top \mathbf{X})^{-1}$). El modelo sobreajusta el ruido estocástico del entrenamiento, provocando que el error de prueba \textbf{se incremente}.
+Sin embargo, en el conjunto de prueba independiente ($\mathbf{y}_{\text{test}} = \mathbf{X}_{\text{test}}\mathbf{w} + \boldsymbol{\epsilon}_{\text{test}}$), la inclusión de variables irrelevantes o redundantes incrementa la varianza del estimador ($\text{Var}(\hat{\mathbf{w}}) = \sigma^2 (\mathbf{X}^\top \mathbf{X})^{-1}$). El modelo sobreajusta el ruido estocástico del entrenamiento, provocando que el error de prueba \textbf{se incremente}.
 
 \vspace{10pt}
 \subsubsection*{Pregunta 2: En el experimento de varianza y sesgo, ¿qué señal concreta en tus gráficas te indica sobreajuste, y qué señal indica subajuste?}
@@ -1010,7 +1044,7 @@ Calcula la matriz de covarianza únicamente entre voltaje y conductividad (una m
 \pthreeStep{Paso 1: Cálculo de la Matriz de Covarianza $2 \times 2$}
 A partir de las observaciones de voltaje $\mathbf{v}$ y conductividad $\mathbf{c}$, con medias $\mu_V = 1.7355$ V y $\mu_C = 3.0371$ $\text{EC}_a$, la matriz de covarianza muestral insesgada es:
 \begin{equation}
-  \Sigma_{VC} = \begin{bmatrix} s_V^2 & s_{VC} \\ s_{CV} & s_C^2 \end{bmatrix} =
+  \mathbf{\Sigma}_{VC} = \begin{bmatrix} s_V^2 & s_{VC} \\ s_{CV} & s_C^2 \end{bmatrix} =
   \begin{bmatrix}
     0.522148 & 0.913758 \\
     0.913758 & 1.599077
@@ -1019,10 +1053,10 @@ A partir de las observaciones de voltaje $\mathbf{v}$ y conductividad $\mathbf{c
 Nótese que $s_C^2 = (1.75)^2 s_V^2 = 3.0625 \cdot 0.522148 = 1.599077$ y $s_{VC} = 1.75 s_V^2 = 0.913758$.
 
 \pthreeStep{Paso 2: Obtención de Valores y Vectores Propios}
-Resolviendo la ecuación característica $\det(\Sigma_{VC} - \lambda \mathbf{I}) = 0$:
+Resolviendo la ecuación característica $\det(\mathbf{\Sigma}_{VC} - \lambda \mathbf{I}) = 0$:
 \begin{align}
   \det \begin{bmatrix} 0.522148 - \lambda & 0.913758 \\ 0.913758 & 1.599077 - \lambda \end{bmatrix} &= 0 \\
-  \lambda^2 - \underbrace{(0.522148 + 1.599077)}_{\tr(\Sigma) = 2.121225} \lambda + \underbrace{(0.522148 \cdot 1.599077 - 0.913758^2)}_{\det(\Sigma) = 0} &= 0
+  \lambda^2 - \underbrace{(0.522148 + 1.599077)}_{\tr(\mathbf{\Sigma}) = 2.121225} \lambda + \underbrace{(0.522148 \cdot 1.599077 - 0.913758^2)}_{\det(\mathbf{\Sigma}) = 0} &= 0
 \end{align}
 
 Los autovalores resultantes son:
@@ -1159,7 +1193,7 @@ Se sometió la función a prueba con dos escenarios:
 % RETO DE EXTENSIÓN (TEMA 5)
 % -------------------------------------------------------------------------
 \newpage
-\pthreeExercise{Reto de Extensión (Tema 5)}{Cálculo Geométrico de $R^2$ por Proyección Ortogonal}
+\pthreeExercise{Reto de Extensión (Tema 5)}{Cálculo Geométrico de \texorpdfstring{$R^2$}{R\texttwosuperior} por Proyección Ortogonal}
 
 \begin{pthreeProblem}
 El equipo de QA quiere que la función \texttt{verificar\_ajuste} también reporte cuánta varianza de $\mathbf{y}$ queda explicada por el modelo (no solo si el ajuste es "correcto" en el sentido de ortogonalidad). Investiga cómo calcular el coeficiente de determinación $R^2$ a partir de la proyección ortogonal de $\mathbf{y}$ sobre el espacio columna de $\mathbf{X}$ (relaciona $R^2$ con la norma de $\hat{\mathbf{y}} - \bar{y}$ frente a la norma de $\mathbf{y} - \bar{y}$), impleméntalo, y agrégalo como salida adicional de tu función de verificación.
@@ -1265,7 +1299,7 @@ Interpretación geométrica de los autovalores y elipsoides de dispersión en el
 \end{pthreeProblem}
 
 \textbf{Respuesta:}
-Geométricamente, una matriz de covarianza $\Sigma \in \R^{2 \times 2}$ describe la dispersión y orientación espacial de una nube de puntos en el plano. Las curvas de densidad constante forman elipses concéntricas centradas en la media de los datos:
+Geométricamente, una matriz de covarianza $\mathbf{\Sigma} \in \R^{2 \times 2}$ describe la dispersión y orientación espacial de una nube de puntos en el plano. Las curvas de densidad constante forman elipses concéntricas centradas en la media de los datos:
 \begin{itemize}[label={\color{p3blue}$\blacktriangleright$}]
   \item Las \textbf{direcciones de los ejes principales} de la elipse están determinadas por los \textbf{vectores propios} ($\mathbf{u}_1$ y $\mathbf{u}_2$).
   \item Las \textbf{longitudes de los semiejes} son proporcionales a las raíces cuadradas de los \textbf{valores propios} ($\sqrt{\lambda_1}$ y $\sqrt{\lambda_2}$).
@@ -1355,7 +1389,7 @@ A partir de las tres etapas de experimentación y modelado desarrolladas en los 
     \draw[p3gold, line width=1.5pt] (8.4,0) -- (9.4,0);
   \end{tikzpicture}\\[10pt]
   {\titlefont\fontsize{10}{12}\selectfont\color{p3dark}FIN DEL DOCUMENTO DE INFORME TÉCNICO}\\[3pt]
-  {\sffamily\fontsize{9}{11}\selectfont\color{gray}Grupo Edeméridos --- Andrés Sebastián Coral Vallejo \& Paula Alejandra Ortiz}
+  {\sffamily\fontsize{9}{11}\selectfont\color{p3darkgray}Grupo Edeméridos (Grupo 5) --- Andrés Sebastián Coral Vallejo \& Paula Alejandra Ortiz}
 \end{center}
 
 \end{document}
